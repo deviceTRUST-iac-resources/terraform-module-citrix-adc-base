@@ -144,7 +144,7 @@ resource "citrixadc_nsconfig_save" "base_save" {
   timestamp  = timestamp()
 
   depends_on = [
-    citrixadc_nsip.base_nsip,
+    citrixadc_nsip.snip,
     citrixadc_nsmode.base_nsmode,
     citrixadc_nsfeature.base_nsfeature,
     citrixadc_nshttpprofile.base_http_prof_democloud,
