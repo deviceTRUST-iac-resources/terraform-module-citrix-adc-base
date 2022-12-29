@@ -2,11 +2,8 @@
 # Variables for administrative connection to the ADC
 #####
 
-variable adc-base {
-}
+variable adc-base {}
 
-variable adc-base-snip {
-}
+variable adc-base-snip {}
 
-variable adc-base-timezone {
-}
+variable adc-base-timezone {}
