@@ -7,3 +7,6 @@
 
   variable adc-base-snip {
   }
+
+  variable adc-base-timezone {
+  }
