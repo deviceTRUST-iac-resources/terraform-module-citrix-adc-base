@@ -2,19 +2,18 @@
 # NS Hostname
 #####
 resource "citrixadc_nshostname" "base_hostname" {
-   hostname = var.adc-base-hostname
+   hostname = var.adc-base.hostname
 }
 
 #####
 # Add IP addresses
 #####
 
-resource "citrixadc_nsip" "base_nsip" {
-  count  = length(var.adc-base-ip.ipaddress)
-  ipaddress  = element(var.adc-base-ip["ipaddress"],count.index)
-  netmask  = element(var.adc-base-ip["netmask"],count.index)
-  type   = element(var.adc-base-ip["type"],count.index)
-  icmp   = element(var.adc-base-ip["icmp"],count.index)
+resource "citrixadc_nsip" "snip" {
+  ipaddress  = var.adc-base-snip.ipaddress
+  netmask  = var.adc-base-snip.netmask
+  type   = var.adc-base-snip.type
+  icmp   = var.adc-base-snip.icmp
 }
 
 #####
@@ -22,7 +21,7 @@ resource "citrixadc_nsip" "base_nsip" {
 #####
 
 #resource "citrixadc_nsparam" "nsparam" {
-#  timezone = var.adc-base-timezone
+#  timezone = var.adc-base.timezone
 #}
 
 #####
