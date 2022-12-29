@@ -2,9 +2,8 @@
 # Variables for administrative connection to the ADC
 #####
 
-  adc-base = {
+  variable adc-base = {
   }
 
-  adc-base-snip = {
+  variable adc-base-snip = {
   }
-  
