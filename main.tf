@@ -151,18 +151,3 @@ resource "citrixadc_nsconfig_save" "base_save" {
     citrixadc_nstcpprofile.base_tcp_prof_democloud
   ]
 }
-
-#####
-# Wait for config save to commence properly, before allowing the subsequent module to run.
-#####
-
-
-resource "time_sleep" "base_wait" {
-
-  create_duration = "15s"
-
-  depends_on = [
-    citrixadc_nsconfig_save.base_save
-  ]
-
-}
