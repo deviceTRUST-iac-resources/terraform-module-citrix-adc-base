@@ -10,10 +10,10 @@ resource "citrixadc_nshostname" "base_hostname" {
 #####
 
 resource "citrixadc_nsip" "snip" {
-  ipaddress  = var.adc-base-snip.ip
-  netmask  = var.adc-base-snip.netmask
-  type   = var.adc-base-snip.type
-  icmp   = var.adc-base-snip.icmp
+  ipaddress = var.adc-base-snip.ip
+  netmask   = var.adc-base-snip.netmask
+  type      = var.adc-base-snip.type
+  icmp      = var.adc-base-snip.icmp
 }
 
 #####
