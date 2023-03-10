@@ -152,11 +152,9 @@ resource "citrixadc_nsconfig_save" "base_save" {
 # Wait a few seconds
 #####
 resource "time_sleep" "base_wait_a_few_seconds" {
-
   create_duration = "15s"
 
   depends_on = [
     citrixadc_nsconfig_save.base_save
   ]
-
 }
