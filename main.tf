@@ -136,7 +136,7 @@ resource "citrixadc_nstcpprofile" "base_tcp_prof_democloud" {
 }
 
 #####
-# Save config - Only if all previous resources have been created successfully.
+# Save config
 #####
 
 resource "citrixadc_nsconfig_save" "base_save" {  
@@ -152,5 +152,15 @@ resource "citrixadc_nsconfig_save" "base_save" {
     citrixadc_nsmode.base_nsmode,
     citrixadc_nsparam.nsparam,
     citrixadc_nstcpprofile.base_tcp_prof_democloud
-      ]
+  ]
+}
+
+resource "time_sleep" "base_wait_a_few_seconds" {
+
+  create_duration = "15s"
+
+  depends_on = [
+    citrixadc_nsconfig_save.base_save
+  ]
+
 }
