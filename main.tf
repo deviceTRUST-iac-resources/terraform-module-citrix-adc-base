@@ -21,8 +21,7 @@ resource "citrixadc_nsip" "snip" {
 #####
 
 resource "citrixadc_nsparam" "nsparam" {
-  timezone = "GMT+01:00-CET-Europe/Berlin"
-  #timezone = var.adc-base.timezone
+  timezone = var.adc-base.timezone
 }
 
 #####
