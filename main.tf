@@ -8,7 +8,6 @@ resource "citrixadc_nshostname" "base_hostname" {
 #####
 # Add IP addresses
 #####
-
 resource "citrixadc_nsip" "snip" {
   ipaddress = var.adc-base-snip.ip
   netmask   = var.adc-base-snip.netmask
@@ -17,17 +16,15 @@ resource "citrixadc_nsip" "snip" {
 }
 
 #####
-# Configure the ADC timezone / ToDo: Getting "ambigous" error
+# Configure the ADC timezone
 #####
-
 resource "citrixadc_nsparam" "nsparam" {
   timezone = var.adc-base.timezone
 }
 
 #####
-# Configure Modes / Static for now
+# Configure Modes
 #####
-
 resource "citrixadc_nsmode" "base_nsmode" {
   bridgebpdus = false
   cka = false
@@ -50,9 +47,8 @@ resource "citrixadc_nsmode" "base_nsmode" {
 }
 
 #####
-# Configure Features / Static for now
+# Configure Features
 #####
-
 resource "citrixadc_nsfeature" "base_nsfeature" {
   aaa = true
   adaptivetcp = false
@@ -99,9 +95,8 @@ resource "citrixadc_nsfeature" "base_nsfeature" {
 }
 
 #####
-# Add a http Profile  / Static for now
+# Add a http Profile
 #####
-
 resource "citrixadc_nshttpprofile" "base_http_prof_democloud" {
   name = "http_prof_democloud"
   dropinvalreqs = "ENABLED"
@@ -111,9 +106,8 @@ resource "citrixadc_nshttpprofile" "base_http_prof_democloud" {
 }
 
 #####
-# Add a TCP Profile  / Static for now
+# Add a TCP Profile
 #####
-
 resource "citrixadc_nstcpprofile" "base_tcp_prof_democloud" {
   name = "tcp_prof_democloud"
   ws = "ENABLED"
@@ -138,7 +132,6 @@ resource "citrixadc_nstcpprofile" "base_tcp_prof_democloud" {
 #####
 # Save config
 #####
-
 resource "citrixadc_nsconfig_save" "base_save" {  
   all  = true
   timestamp  = timestamp()
@@ -155,6 +148,9 @@ resource "citrixadc_nsconfig_save" "base_save" {
   ]
 }
 
+#####
+# Wait a few seconds
+#####
 resource "time_sleep" "base_wait_a_few_seconds" {
 
   create_duration = "15s"
