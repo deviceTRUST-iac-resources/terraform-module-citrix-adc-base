@@ -20,9 +20,10 @@ resource "citrixadc_nsip" "snip" {
 # Configure the ADC timezone / ToDo: Getting "ambigous" error
 #####
 
-#resource "citrixadc_nsparam" "nsparam" {
-#  timezone = var.adc-base.timezone
-#}
+resource "citrixadc_nsparam" "nsparam" {
+  timezone = "GMT+01:00-CET-Europe/Berlin"
+  #timezone = var.adc-base.timezone
+}
 
 #####
 # Configure Modes / Static for now
