@@ -1,14 +1,14 @@
 #####
-# NS Hostname
+# Set NS Hostname
 #####
 resource "citrixadc_nshostname" "base_hostname" {
    hostname = var.adc-base.hostname
 }
 
 #####
-# Add IP addresses
+# Add NSIP
 #####
-resource "citrixadc_nsip" "snip" {
+resource "citrixadc_nsip" "base_snip" {
   ipaddress = var.adc-base-snip.ip
   netmask   = var.adc-base-snip.netmask
   type      = var.adc-base-snip.type
@@ -16,9 +16,9 @@ resource "citrixadc_nsip" "snip" {
 }
 
 #####
-# Configure the ADC timezone
+# Configure ADC timezone
 #####
-resource "citrixadc_nsparam" "nsparam" {
+resource "citrixadc_nsparam" "base_nsparam" {
   timezone = var.adc-base.timezone
 }
 
@@ -95,10 +95,10 @@ resource "citrixadc_nsfeature" "base_nsfeature" {
 }
 
 #####
-# Add a http Profile
+# Add basic http Profile
 #####
-resource "citrixadc_nshttpprofile" "base_http_prof_democloud" {
-  name = "http_prof_democloud"
+resource "citrixadc_nshttpprofile" "base_http_prof" {
+  name = "http_prof_${var.adc-base.environmentname}"
   dropinvalreqs = "ENABLED"
   markhttp09inval = "ENABLED"
   markconnreqinval = "ENABLED"
@@ -106,10 +106,10 @@ resource "citrixadc_nshttpprofile" "base_http_prof_democloud" {
 }
 
 #####
-# Add a TCP Profile
+# Add basic TCP Profile
 #####
-resource "citrixadc_nstcpprofile" "base_tcp_prof_democloud" {
-  name = "tcp_prof_democloud"
+resource "citrixadc_nstcpprofile" "base_tcp_prof" {
+  name = "tcp_prof_${var.adc-base.environmentname}"
   ws = "ENABLED"
   sack = "ENABLED"
   wsval = "8"
@@ -140,11 +140,11 @@ resource "citrixadc_nsconfig_save" "base_save" {
     citrixadc_nsconfig_save.base_save,
     citrixadc_nsfeature.base_nsfeature,
     citrixadc_nshostname.base_hostname,
-    citrixadc_nshttpprofile.base_http_prof_democloud,
-    citrixadc_nsip.snip,
+    citrixadc_nshttpprofile.base_http_prof,
+    citrixadc_nsip.base_snip,
     citrixadc_nsmode.base_nsmode,
-    citrixadc_nsparam.nsparam,
-    citrixadc_nstcpprofile.base_tcp_prof_democloud
+    citrixadc_nsparam.base_nsparam,
+    citrixadc_nstcpprofile.base_tcp_prof
   ]
 }
 
